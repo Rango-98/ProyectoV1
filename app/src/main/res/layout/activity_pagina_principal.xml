@@ -53,7 +53,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/txtDescripcion"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/txtNombre"
-                    app:srcCompat="@drawable/profile" />
+                    android:src="@drawable/profile" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout5"
@@ -74,7 +74,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0"
-                        app:srcCompat="@drawable/banner2" />
+                        android:src="@drawable/banner2" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -160,7 +160,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="31dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/bottom_btn1" />
+                        android:src="@drawable/bottom_btn1" />
 
                     <TextView
                         android:id="@+id/txtHome"
@@ -182,7 +182,7 @@
                         android:id="@+id/imgPedidos"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        app:srcCompat="@drawable/pedidos" />
+                        android:src="@drawable/pedidos" />
 
 
                     <TextView
@@ -207,7 +207,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/carro" />
+                        android:src="@drawable/carro" />
 
                     <TextView
                         android:id="@+id/txtCarrito"
@@ -230,7 +230,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/email" />
+                        android:src="@drawable/email" />
 
                     <TextView
                         android:id="@+id/txtContactanos"
@@ -253,7 +253,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/salir" />
+                        android:src="@drawable/salir" />
 
                     <TextView
                         android:id="@+id/txtSalir"
