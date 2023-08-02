@@ -5,14 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.ListView;
 
 public class PaginaPrincipalActivity extends AppCompatActivity {
+
+    private ListView listProducto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagina_principal);
+
+        listProducto = findViewById(R.id.listProducto);
+        listProducto.setAdapter(null);
     }
+
+
 
     private void cerrar_Sesion(){
         SharedPreferences.Editor datosSesion = getSharedPreferences("dato.dat", MODE_PRIVATE).edit();
