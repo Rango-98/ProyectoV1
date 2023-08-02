@@ -31,7 +31,7 @@ public class RegistrarActivity extends AppCompatActivity {
 
         registrar.setOnClickListener(v ->{
             Utilidades utilidades = new Utilidades();
-            registrarUsuario(this ,utilidades.getUrl());
+            registrarUsuario(this ,utilidades.getUrl()); // -> registrarusuario.php
         });
     }
 

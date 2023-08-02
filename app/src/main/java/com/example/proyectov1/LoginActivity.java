@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
         btnSesion.setOnClickListener(v -> {
             Utilidades utilidades = new Utilidades();
-            ingresarApp(utilidades.getUrl());
+            ingresarApp(utilidades.getUrl()); // -> validar_login.php
         });
 
         btnSesion2.setOnClickListener(v -> startActivity(new Intent(this, RegistrarActivity.class)));
