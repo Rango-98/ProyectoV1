@@ -184,6 +184,7 @@
                         android:layout_height="30dp"
                         app:srcCompat="@drawable/pedidos" />
 
+
                     <TextView
                         android:id="@+id/txtPedidos"
                         android:layout_width="match_parent"
