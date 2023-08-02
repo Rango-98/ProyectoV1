@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -20,12 +21,16 @@ import cz.msebera.android.httpclient.Header;
 public class LoginActivity extends AppCompatActivity {
 
     private Button btnSesion, btnSesion2;
+    private TextView edtUsuario, edtContrasena;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+        edtUsuario = findViewById(R.id.edtUsuario);
+        edtContrasena = findViewById(R.id.edtContrasena);
         btnSesion = findViewById(R.id.btnSesion);
         btnSesion2 = findViewById(R.id.btnSesion2);
 
