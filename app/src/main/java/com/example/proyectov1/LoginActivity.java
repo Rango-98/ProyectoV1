@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(getApplicationContext(), "Error: " + error, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Error en la respuesta: " + error, Toast.LENGTH_LONG).show();
                 System.out.println(error.getMessage());
             }
         });
