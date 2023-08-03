@@ -24,7 +24,14 @@
             android:exported="false" />
         <activity
             android:name=".RegistrarActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Base.Theme.bar"
+            android:label="Registrate"
+            android:parentActivityName=".LoginActivity">
+            <meta-data
+                android:name="android.support.PARENT_CURRENT"
+                android:value=".LoginActivity" />
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
