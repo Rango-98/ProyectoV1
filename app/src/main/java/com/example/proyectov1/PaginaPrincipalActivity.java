@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,15 +30,19 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
     private String nombre_usuario;
     private ArrayList<Producto> p =  new ArrayList<>();
 
+    private LinearLayout homeBtn, cerrarSesionbtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagina_principal);
 
-        SharedPreferences datosA = getSharedPreferences("sesion", MODE_PRIVATE);
+        SharedPreferences datosA = getSharedPreferences("dato.dat", MODE_PRIVATE);
         nombre_usuario = datosA.getString("nombre", "usuario");
 
         txtNombre = findViewById(R.id.txtNombre);
+        homeBtn = findViewById(R.id.homeBtn);
+        cerrarSesionbtn = findViewById(R.id.cerrarSesionbtn);
 
         txtNombre.setText("Bienvenido: " +  nombre_usuario);
         listProducto = findViewById(R.id.listProducto);
@@ -45,7 +50,14 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
         Utilidades utilidades = new Utilidades();
         cargarProductosPopulares(this, utilidades.getUrl() + "productos_populares.php");
 
+        homeBtn.setOnClickListener(v->{
+            startActivity(new Intent(this, PaginaPrincipalActivity.class));
+        });
 
+
+        cerrarSesionbtn.setOnClickListener(v ->{
+            cerrar_Sesion();
+        });
     }
 
     private void cargarProductosPopulares(Context context, String url){
