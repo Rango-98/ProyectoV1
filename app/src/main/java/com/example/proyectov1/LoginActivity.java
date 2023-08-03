@@ -60,8 +60,9 @@ public class LoginActivity extends AppCompatActivity {
                             dato.getJSONObject(0).getString("FECHA_NACIMIENTO");
                             dato.getJSONObject(0).getString("PRIVILEGIO");
 
-                            guardarDatosSesion(dato.getJSONObject(0).getString("NOMBRE"), dato.getJSONObject(0).getString("PASSWORD"));
+                            guardarDatosSesion(dato.getJSONObject(0).getString("NOMBRE"), dato.getJSONObject(0).getString("NOMBRE"), dato.getJSONObject(0).getString("PASSWORD"));
                             startActivity(new Intent(getApplicationContext(), PaginaPrincipalActivity.class));
+
                             finish();
 
                         } else {
@@ -83,8 +84,9 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void guardarDatosSesion(String usuario, String contra) {
+    private void guardarDatosSesion(String usuario, String contra, String nombre) {
         SharedPreferences.Editor datosSesion = getSharedPreferences("dato.dat", MODE_PRIVATE).edit();
+        datosSesion.putString("nombre", nombre);
         datosSesion.putString("usuario", usuario);
         datosSesion.putString("contrasena", contra);
         datosSesion.putBoolean("registro", true);
