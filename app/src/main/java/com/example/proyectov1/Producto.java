@@ -11,14 +11,15 @@ public class Producto {
     private String marca;
     private String modelo;
     private String tipo;
-    private float precio_proveedor;
-    private float precio_venta;
+    private double precio_proveedor;
+    private double precio_venta;
     private String codigo_barras;
     private String fecha_ingreso;
+
     public Producto() {
     }
 
-    public Producto(int id, int id_proveedor, String sku, String nombre, int cantidad, String categoria, String marca, String modelo, String tipo, float precio_proveedor, float precio_venta, String codigo_barras, String fecha_ingreso) {
+    public Producto(int id, int id_proveedor, String sku, String nombre, int cantidad, String categoria, String marca, String modelo, String tipo, double precio_proveedor, double precio_venta, String codigo_barras, String fecha_ingreso) {
         this.id = id;
         this.id_proveedor = id_proveedor;
         this.sku = sku;
@@ -70,11 +71,11 @@ public class Producto {
         return tipo;
     }
 
-    public float getPrecio_proveedor() {
+    public double getPrecio_proveedor() {
         return precio_proveedor;
     }
 
-    public float getPrecio_venta() {
+    public double getPrecio_venta() {
         return precio_venta;
     }
 
