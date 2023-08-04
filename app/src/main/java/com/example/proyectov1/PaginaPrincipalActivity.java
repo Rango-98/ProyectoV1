@@ -48,7 +48,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
         listProducto = findViewById(R.id.listProducto);
 
         Utilidades utilidades = new Utilidades();
-        cargarProductosPopulares(this, utilidades.getUrl() + "productos_populares.php");
+        cargarProductosPopulares(this, utilidades.getUrl() + "productos.php");
 
         homeBtn.setOnClickListener(v->{
             startActivity(new Intent(this, PaginaPrincipalActivity.class));
