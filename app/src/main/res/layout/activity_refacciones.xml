@@ -4,132 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo2"
-    tools:context=".PaginaPrincipalActivity">
+    android:background="@drawable/fondo3"
+    tools:context=".RefaccionesActivity">
 
     <ScrollView
-        android:id="@+id/scrollView4"
+        android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/txtRefacciones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="32dp"
+                android:text="Refacciones"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/txtNombre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="22dp"
-                    android:layout_marginTop="32dp"
-                    android:text="Bienvenido German"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/txtDescripcion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Selecciona y ordena"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="@+id/txtNombre"
-                    app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
-
-                <ImageView
-                    android:id="@+id/imgPerfil"
-                    android:layout_width="71dp"
-                    android:layout_height="75dp"
-                    android:layout_marginEnd="40dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/txtDescripcion"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/txtNombre"
-                    android:src="@drawable/profile" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout5"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="25dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtDescripcion">
-
-                    <ImageView
-                        android:id="@+id/imgPromo"
-                        android:layout_width="404dp"
-                        android:layout_height="163dp"
-                        android:layout_marginEnd="16dp"
-                        android:scaleType="fitXY"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0"
-                        android:src="@drawable/banner2" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <EditText
-                    android:id="@+id/editTextText"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="35dp"
-                    android:background="@drawable/buscar_edt_background"
-                    android:drawableStart="@drawable/search"
-                    android:drawablePadding="10dp"
-                    android:ems="10"
-                    android:hint="Encuentra refacciones y accesorios"
-                    android:inputType="text"
-                    android:paddingStart="10dp"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
-                    android:textStyle="italic"
-                    app:layout_constraintEnd_toEndOf="@+id/constraintLayout5"
-                    app:layout_constraintStart_toStartOf="@+id/constraintLayout5"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
-
-                <TextView
-                    android:id="@+id/txtPopular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="22dp"
-                    android:layout_marginTop="20dp"
-                    android:text="Popular"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextText" />
-
-                <ListView
-                    android:id="@+id/listProducto"
-                    android:layout_width="417dp"
-                    android:layout_height="285dp"
-                    android:layout_marginTop="12dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtPopular" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
+            <ListView
+                android:layout_width="410dp"
+                android:layout_height="598dp"
+                android:layout_marginEnd="1dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtRefacciones" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="424dp"
         android:layout_height="60dp"
-        app:layout_constraintBottom_toBottomOf="@+id/scrollView4"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -173,7 +86,6 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btn_pedidos"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -187,7 +99,7 @@
 
 
                     <TextView
-                        android:id="@+id/txtPedido"
+                        android:id="@+id/txtTituloPedido"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Pedidos"
@@ -197,7 +109,6 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btn_carrito"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -245,7 +156,6 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/cerrarSesionbtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
