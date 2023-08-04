@@ -29,8 +29,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
     private TextView txtNombre;
     private String nombre_usuario;
     private ArrayList<Producto> p =  new ArrayList<>();
-
-    private LinearLayout homeBtn, cerrarSesionbtn;
+    private LinearLayout homeBtn, cerrarSesionbtn, btn_pedidos, btn_carrito;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +41,8 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
 
         txtNombre = findViewById(R.id.txtNombre);
         homeBtn = findViewById(R.id.homeBtn);
+        btn_pedidos = findViewById(R.id.btn_pedidos);
+        btn_carrito = findViewById(R.id.btn_carrito);
         cerrarSesionbtn = findViewById(R.id.cerrarSesionbtn);
 
         txtNombre.setText("Bienvenido: " +  nombre_usuario);
@@ -54,6 +55,13 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
             startActivity(new Intent(this, PaginaPrincipalActivity.class));
         });
 
+        btn_pedidos.setOnClickListener(v ->{
+            startActivity(new Intent(this, pedidosActivity.class));
+        });
+
+        btn_carrito.setOnClickListener(v->{
+            startActivity(new Intent(this, carritoActivity.class));
+        });
 
         cerrarSesionbtn.setOnClickListener(v ->{
             cerrar_Sesion();
