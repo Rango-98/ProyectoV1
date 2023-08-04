@@ -32,12 +32,13 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="495dp"
+                android:layout_height="550dp"
                 android:layout_marginTop="32dp">
 
                 <LinearLayout
+                    android:id="@+id/linearLayout3"
                     android:layout_width="375dp"
-                    android:layout_height="496dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="20dp"
@@ -97,7 +98,7 @@
                             android:layout_weight="1"
                             android:drawableStart="@drawable/tienda"
                             android:drawablePadding="10dp"
-                            android:text="TextView"
+                            android:text="Pagar en Tienda"
                             android:textSize="18dp"
                             android:textStyle="bold" />
 
@@ -107,9 +108,119 @@
                             android:layout_height="37dp"
                             android:layout_weight="1"
                             android:drawableBottom="@drawable/correcto" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:orientation="vertical"
+                        tools:layout_marginBottom="4dp">
+
+                        <TextView
+                            android:id="@+id/txtTituloAnadir"
+                            android:layout_width="244dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_weight="1"
+                            android:drawableStart="@drawable/agregar"
+                            android:drawablePadding="10dp"
+                            android:text="Agregar Tarjeta"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/edtNumTarjeta"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:ems="20"
+                            android:hint="Número de tarjeta"
+                            android:inputType="number"
+                            android:textColor="#000000"
+                            android:textSize="18dp" />
+
+                        <EditText
+                            android:id="@+id/editTextText4"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="Nombre titular"
+                            android:inputType="text"
+                            android:textColor="#000000" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/edtFecha"
+                                android:layout_width="wrap_content"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:ems="10"
+                                android:hint="MM/AAAA"
+                                android:inputType="text" />
+
+                            <EditText
+                                android:id="@+id/edtCCV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:ems="10"
+                                android:hint="CCV"
+                                android:inputType="text" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <Button
+                                android:id="@+id/btnFoto"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:backgroundTint="@color/design_default_color_error"
+                                android:text="Tomar foto"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                app:iconSize="18dp" />
+
+                            <Button
+                                android:id="@+id/btnPagar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:backgroundTint="@color/design_default_color_error"
+                                android:text="Confirmar compra"
+                                android:textSize="18dp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtAviso"
+                    android:layout_width="209dp"
+                    android:layout_height="49dp"
+                    android:layout_marginTop="20dp"
+                    android:text="*Todos los pedidos realizados
+
+     se recogen en tienda"
+                    android:textAlignment="center"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+                    tools:layout_editor_absoluteX="101dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -117,4 +228,148 @@
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="424dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:backgroundTint="#f6f6f6"
+            app:fabCradleMargin="8dp"
+            app:fabCradleRoundedCornerRadius="50dp"
+            app:fabCradleVerticalOffset="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/homeBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="0.2"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="31dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/bottom_btn1" />
+
+                    <TextView
+                        android:id="@+id/txtHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Home"
+                        android:textAlignment="center"
+                        android:textColor="#676767"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgPedidos"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:src="@drawable/pedidos" />
+
+
+                    <TextView
+                        android:id="@+id/txtTituloPedido"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Pedidos"
+                        android:textAlignment="center"
+                        android:textColor="#676767"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/imgCarrito"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:src="@drawable/carro" />
+
+                    <TextView
+                        android:id="@+id/txtCarrito"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Carrito"
+                        android:textAlignment="center"
+                        android:textColor="#676767"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgContactanos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/email" />
+
+                    <TextView
+                        android:id="@+id/txtContactanos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Contactanos"
+                        android:textAlignment="center"
+                        android:textColor="#676767"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgSalir"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/salir" />
+
+                    <TextView
+                        android:id="@+id/txtSalir"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Salir
+"
+                        android:textAlignment="center"
+                        android:textColor="#676767"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
