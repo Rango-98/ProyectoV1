@@ -14,6 +14,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".VistaProductoActivity"
+            android:exported="false" />
+        <activity
             android:name=".RefaccionesActivity"
             android:exported="false" />
         <activity

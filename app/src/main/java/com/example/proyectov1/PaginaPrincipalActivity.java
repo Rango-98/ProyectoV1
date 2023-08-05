@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -14,9 +16,11 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.proyectov1.clases.Adaptador_producto;
+import com.example.proyectov1.clases.Producto;
+import com.example.proyectov1.clases.Utilidades;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,51 +73,44 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
     }
 
     private void cargarProductosPopulares(Context context, String url){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    if (!response.equals("0")) {
-                        JSONArray array = new JSONArray(new String(response));
-                        int i = 0;
-                        while (i < array.length()) {
-                            p.add(new Producto(array.getJSONObject(i).getInt("ID"),
-                                    array.getJSONObject(i).getInt("ID_PROVEEDOR"),
-                                    array.getJSONObject(i).getString("SKU"),
-                                    array.getJSONObject(i).getString("NOBMBRE"),
-                                    array.getJSONObject(i).getInt("CANTIDAD"),
-                                    array.getJSONObject(i).getString("CATEGORIA"),
-                                    array.getJSONObject(i).getString("MARCA"),
-                                    array.getJSONObject(i).getString("MODELO"),
-                                    array.getJSONObject(i).getString("TIPO"),
-                                    array.getJSONObject(i).getDouble("PRECIO_PROVEEDOR"),
-                                    array.getJSONObject(i).getDouble("PRECIO_VENTA"),
-                                    array.getJSONObject(i).getString("CODIGO_BARRAS"),
-                                    array.getJSONObject(i).getString("FECHA_INGRESO")));
-                            System.err.println(array);
-                            i++;
-                        }
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
+            try {
+                if (!response.equals("0")) {
+                    JSONArray array = new JSONArray(new String(response));
+                    int i = 0;
+                    while (i < array.length()) {
+                        p.add(new Producto(array.getJSONObject(i).getInt("ID"),
+                                array.getJSONObject(i).getInt("ID_PROVEEDOR"),
+                                array.getJSONObject(i).getString("SKU"),
+                                array.getJSONObject(i).getString("NOBMBRE"),
+                                array.getJSONObject(i).getInt("CANTIDAD"),
+                                array.getJSONObject(i).getString("CATEGORIA"),
+                                array.getJSONObject(i).getString("MARCA"),
+                                array.getJSONObject(i).getString("MODELO"),
+                                array.getJSONObject(i).getString("TIPO"),
+                                array.getJSONObject(i).getDouble("PRECIO_PROVEEDOR"),
+                                array.getJSONObject(i).getDouble("PRECIO_VENTA"),
+                                array.getJSONObject(i).getString("CODIGO_BARRAS"),
+                                array.getJSONObject(i).getString("FECHA_INGRESO")));
+                        System.err.println(array);
+                        i++;
                     }
-
-                    Adaptador_producto adaptadorProducto = new Adaptador_producto(context,p);
-                    listProducto.setAdapter(adaptadorProducto);
-
-                        /*adaptadorMisVacantes.setOnclickListener(view -> {
-                            int valor_idpostulacion = datos_misvacantes.get(recycle_vacantes_usuarios.getChildAdapterPosition(view)).getId_postulacion();
-                            int valor_idvacante = datos_misvacantes.get(recycle_vacantes_usuarios.getChildAdapterPosition(view)).getId_vacanteVW();
-                            Intent intent = new Intent(context, Estatus_postulacion.class);
-                            Bundle bundle = new Bundle();
-                            System.out.println(valor_idpostulacion);
-                            System.out.println(valor_idvacante );
-                            bundle.putString("id_postulacion", String.valueOf(valor_idpostulacion));
-                            bundle.putString("id_vacante", String.valueOf(valor_idvacante));
-                            intent.putExtras(bundle);
-                            startActivity(intent);
-                        });*/
-
-                } catch (JSONException exception) {
-                    System.err.println("Error Json:" + exception.getMessage());
                 }
+
+                Adaptador_producto adaptadorProducto = new Adaptador_producto(context,p);
+                listProducto.setAdapter(adaptadorProducto);
+
+                listProducto.setOnItemClickListener((adapterView, view, i, l) -> {
+                    Producto itemProducto = p.get(i);
+                    Intent intent = new Intent(context, VistaProductoActivity.class);
+                    intent.putExtra("id_producto", itemProducto.getId());
+                    intent.putExtra("nombre", itemProducto.getNombre());
+                    intent.putExtra("precio_venta", itemProducto.getPrecio_venta());
+                    startActivity(intent);
+                });
+
+            } catch (JSONException exception) {
+                System.err.println("Error Json:" + exception.getMessage());
             }
         }, error -> {
             System.out.println(error.getMessage());
