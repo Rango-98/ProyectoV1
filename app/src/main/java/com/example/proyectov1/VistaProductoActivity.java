@@ -29,7 +29,7 @@ public class VistaProductoActivity extends AppCompatActivity {
     private TextView txtTituloProducto, txt_precioProducto, txtTotalItems, tv_contador;
     private ImageView btnMas, btnMenos;
     private Button btnAgregar, btnCancelar;
-    private int contador;
+    private int contador = 1;
     private double precio_venta = 0.0;
     private double precio_final = 0.0;
     private String url = "";
@@ -60,10 +60,11 @@ public class VistaProductoActivity extends AppCompatActivity {
         precio_venta = bundle.getDouble("precio_venta");
         txtTituloProducto.setText(bundle.getString("nombre"));
         txt_precioProducto.setText("$ " + precio_venta);
+        txtTotalItems.setText("$ " + precio_venta);
         tv_contador.setText(String.valueOf(contador));
 
         btnMas.setOnClickListener(v ->{
-            tv_contador.setText(String.valueOf(contador++));
+            tv_contador.setText(String.valueOf((contador++)-1));
              precio_final = precio_venta * contador;
             txtTotalItems.setText("$ " + precio_final);
 
