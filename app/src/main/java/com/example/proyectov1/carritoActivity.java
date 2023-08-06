@@ -38,7 +38,7 @@ public class carritoActivity extends AppCompatActivity {
     private double IVA = 0.16;
     private double precioTotal = 0;
 
-    private String codigo_carrito = "";
+    private int codigo_carrito = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +83,7 @@ public class carritoActivity extends AppCompatActivity {
                         System.err.println(array);
 
                         precios.add(array.getJSONObject(i).getDouble("COSTO"));
-
-                        codigo_carrito = array.getJSONObject(0).getString("CODIGO_CARRITO");
+                        codigo_carrito = array.getJSONObject(0).getInt("CODIGO_CARRITO");
 
                         for (Double e: precios) {
                             sumadorCostos = sumadorCostos + e;

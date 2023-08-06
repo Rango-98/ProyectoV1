@@ -48,8 +48,10 @@ public class FormaPagoActivity extends AppCompatActivity {
         nombre_usuario = datosA.getString("nombre", "usuario");
         idusuario = datosA.getInt("idUsuario", 0);
 
-        Bundle bundle = new Bundle();
+        Bundle bundle = getIntent().getExtras();
         codigo_carrito  = bundle.getInt("codigo_carrito");;
+
+        System.out.println(codigo_carrito);
 
         Utilidades utilidades = new Utilidades();
         url = utilidades.getUrl() + "guardar_pedido.php";
@@ -139,7 +141,7 @@ public class FormaPagoActivity extends AppCompatActivity {
                 protected Map<String, String> getParams()  {
                     Map<String, String> param = new HashMap<>();
                     param.put("idusuario", String.valueOf(idusuario));
-                    param.put("codigocarrito", String.valueOf(234324));
+                    param.put("codigocarrito", String.valueOf(codigo_carrito));
                     return param;
                 }
             };
