@@ -1,4 +1,4 @@
-package com.example.proyectov1;
+package com.example.proyectov1.clases;
 
 public class Producto {
 

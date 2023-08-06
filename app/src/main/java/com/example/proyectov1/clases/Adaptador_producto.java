@@ -1,4 +1,4 @@
-package com.example.proyectov1;
+package com.example.proyectov1.clases;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.proyectov1.R;
+import com.example.proyectov1.clases.Producto;
 
 import java.util.ArrayList;
 
@@ -37,15 +40,13 @@ public class Adaptador_producto extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         Producto item = arreglo_producto.get(i);
-        view = LayoutInflater.from(context).inflate(R.layout.view_producto, null);
+        view = LayoutInflater.from(context).inflate(R.layout.items_lista_producto, null);
 
-        TextView txtTituloProducto = view.findViewById(R.id.txtTituloProducto);
-        TextView txtProducto = view.findViewById(R.id.txtProducto);
-        TextView txtTotalItems = view.findViewById(R.id.txtTotalItems);
+        TextView tv_titulo_producto = view.findViewById(R.id.tv_titulo_producto);
+        TextView tv_precio = view.findViewById(R.id.tv_precio);
 
-        txtTituloProducto.setText(item.getNombre());
-        txtProducto.setText("$ " + item.getPrecio_proveedor());
-        txtTotalItems.setText("$ " + item.getPrecio_venta());
+        tv_titulo_producto.setText(item.getNombre());
+        tv_precio.setText("$ " + item.getPrecio_venta());
 
         return view ;
     }
