@@ -2,6 +2,7 @@ package com.example.proyectov1.clases;
 
 public class Carrito {
     private int id;
+    private String codigo_carrito;
     private int id_producto;
     private double costo;
     private int cantidad;
@@ -14,8 +15,9 @@ public class Carrito {
     public Carrito() {
     }
 
-    public Carrito(int id, int id_producto, double costo, int cantidad, String fecha_venta, int id_usuario, int carrito, String nombre_producto) {
+    public Carrito(int id, String codigo_carrito, int id_producto, double costo, int cantidad, String fecha_venta, int id_usuario, int carrito, String nombre_producto) {
         this.id = id;
+        this.codigo_carrito = codigo_carrito;
         this.id_producto = id_producto;
         this.costo = costo;
         this.cantidad = cantidad;
@@ -27,6 +29,10 @@ public class Carrito {
 
     public int getId() {
         return id;
+    }
+
+    public String getCodigo_carrito() {
+        return codigo_carrito;
     }
 
     public int getId_producto() {

@@ -38,6 +38,8 @@ public class carritoActivity extends AppCompatActivity {
     private double IVA = 0.16;
     private double precioTotal = 0;
 
+    private String codigo_carrito = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,11 +61,6 @@ public class carritoActivity extends AppCompatActivity {
 
         txtPrecioIVA.setText("16%");
 
-        btn_Compra.setOnClickListener(v ->{
-            Intent intent = new Intent(this, FormaPagoActivity.class);
-            startActivity(intent);
-        });
-
     }
 
     private void cargarCarrito(Context context, String url) {
@@ -75,6 +72,7 @@ public class carritoActivity extends AppCompatActivity {
                     while (i < array.length()) {
                         carritos.add(new Carrito(
                                 array.getJSONObject(i).getInt("ID"),
+                                array.getJSONObject(i).getString("CODIGO_CARRITO"),
                                 array.getJSONObject(i).getInt("ID_PRODUCTO"),
                                 array.getJSONObject(i).getDouble("COSTO"),
                                 array.getJSONObject(i).getInt("CANTIDAD"),
@@ -86,6 +84,8 @@ public class carritoActivity extends AppCompatActivity {
 
                         precios.add(array.getJSONObject(i).getDouble("COSTO"));
 
+                        codigo_carrito = array.getJSONObject(0).getString("CODIGO_CARRITO");
+
                         for (Double e: precios) {
                             sumadorCostos = sumadorCostos + e;
                         }
@@ -96,23 +96,17 @@ public class carritoActivity extends AppCompatActivity {
                     txtPrecioProducto.setText("$ " + sumadorCostos);
                     precioTotal = sumadorCostos * IVA;
                     txtTotalPrecio.setText(String.valueOf(precioTotal));
+
+                    btn_Compra.setOnClickListener(v ->{
+                        Intent intent = new Intent(context, FormaPagoActivity.class);
+                        intent.putExtra("codigo_carrito", codigo_carrito);
+                        startActivity(intent);
+                    });
                 }
 
                 Adaptador_Carrito adaptadorCarrito = new Adaptador_Carrito(context, carritos);
                 itmProductoCarrito.setAdapter(adaptadorCarrito);
 
-                    /*adaptadorMisVacantes.setOnclickListener(view -> {
-                        int valor_idpostulacion = datos_misvacantes.get(recycle_vacantes_usuarios.getChildAdapterPosition(view)).getId_postulacion();
-                        int valor_idvacante = datos_misvacantes.get(recycle_vacantes_usuarios.getChildAdapterPosition(view)).getId_vacanteVW();
-                        Intent intent = new Intent(context, Estatus_postulacion.class);
-                        Bundle bundle = new Bundle();
-                        System.out.println(valor_idpostulacion);
-                        System.out.println(valor_idvacante );
-                        bundle.putString("id_postulacion", String.valueOf(valor_idpostulacion));
-                        bundle.putString("id_vacante", String.valueOf(valor_idvacante));
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-                    });*/
 
             } catch (JSONException exception) {
                 System.err.println("Error Json:" + exception.getMessage());
