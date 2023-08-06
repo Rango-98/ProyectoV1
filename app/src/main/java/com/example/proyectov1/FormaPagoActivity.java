@@ -44,9 +44,15 @@ public class FormaPagoActivity extends AppCompatActivity {
         btnFoto = findViewById(R.id.btnFoto);
         btnPagar = findViewById(R.id.btnPagar);
 
+        edtNumTarjeta.setVisibility(View.GONE);
+        et_nombreTitular.setVisibility(View.GONE);
+        edtFecha.setVisibility(View.GONE);
+        edtCCV.setVisibility(View.GONE);
+        btnFoto.setVisibility(View.GONE);
+
 
         rdbVisa.setOnClickListener(view -> {
-
+            limpiador();
             rdbTienda.setChecked(false);
             rdbAgregar.setChecked(false);
 
@@ -64,7 +70,7 @@ public class FormaPagoActivity extends AppCompatActivity {
 
 
         rdbTienda.setOnClickListener(v ->{
-
+            limpiador();
             rdbVisa.setChecked(false);
             rdbAgregar.setChecked(false);
 
@@ -112,5 +118,12 @@ public class FormaPagoActivity extends AppCompatActivity {
                 edtNumTarjeta.setText(intentResult.getContents());
             }
         }
+    }
+
+    private void limpiador(){
+        edtNumTarjeta.setText("");
+        et_nombreTitular.setText("");
+        edtFecha.setText("");
+        edtCCV.setText("");
     }
 }
