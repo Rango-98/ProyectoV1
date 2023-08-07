@@ -41,7 +41,6 @@ public class SplashActivity extends AppCompatActivity {
         textView.setAnimation(animacion2);
         imageView.setAnimation(animacion1);
 
-
         NotificationChannel canalNotificacion = new NotificationChannel(ID_CANAL, canal, NotificationManager.IMPORTANCE_DEFAULT);
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         manager.createNotificationChannel(canalNotificacion );
@@ -55,21 +54,9 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this,PaginaPrincipalActivity.class);
+                Intent intent = new Intent(SplashActivity.this, pedidosActivity.class);
                 startActivity(intent);
             }
         },4000);
-
-
-        TimerTask t = new  TimerTask(){
-            @Override
-            public void run(){
-                startActivity(new Intent(SplashActivity.this, pedidosActivity.class));
-                finish();
-            }
-        };
-
-        Timer timer = new Timer();
-        timer.schedule(t, 7000);
     }
 }
