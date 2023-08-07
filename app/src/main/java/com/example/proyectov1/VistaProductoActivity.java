@@ -27,9 +27,8 @@ import java.util.Map;
 
 public class VistaProductoActivity extends AppCompatActivity {
 
-    private TextView txtTituloProducto, txt_precioProducto, txtTotalItems, tv_contador;
-    private ImageView btnMas, btnMenos;
-    private Button btnAgregar, btnCancelar;
+    private TextView txtTotalItems;
+    private TextView tv_contador;
     private double precio_venta = 0.0, precio_final = 0.0;
     private String url = "";
     private int idusuario = 0, idproducto = 0, contador = 1;
@@ -47,14 +46,15 @@ public class VistaProductoActivity extends AppCompatActivity {
         Utilidades utilidades = new Utilidades();
         url = utilidades.getUrl() + "llenar_carrito.php";
 
-        txtTituloProducto = findViewById(R.id.txtTituloProducto);
-        txt_precioProducto = findViewById(R.id.txt_precioProducto);
+        ImageView imgProducto = findViewById(R.id.imgProducto);
+        TextView txtTituloProducto = findViewById(R.id.txtTituloProducto);
+        TextView txt_precioProducto = findViewById(R.id.txt_precioProducto);
         txtTotalItems = findViewById(R.id.txtTotalItems);
         tv_contador = findViewById(R.id.tv_contador);
-        btnMas = findViewById(R.id.btnMas);
-        btnMenos = findViewById(R.id.btnMenos);
-        btnAgregar = findViewById(R.id.btnAgregar);
-        btnCancelar = findViewById(R.id.btnCancelar);
+        ImageView btnMas = findViewById(R.id.btnMas);
+        ImageView btnMenos = findViewById(R.id.btnMenos);
+        Button btnAgregar = findViewById(R.id.btnAgregar);
+        Button btnCancelar = findViewById(R.id.btnCancelar);
 
         Bundle bundle = getIntent().getExtras();
         idproducto = bundle.getInt("id_producto");
@@ -63,6 +63,8 @@ public class VistaProductoActivity extends AppCompatActivity {
         txt_precioProducto.setText("$ " + precio_venta);
         txtTotalItems.setText("$ " + precio_venta);
         tv_contador.setText(String.valueOf(contador));
+
+        imgProducto.setImageResource(R.drawable.shopping);
 
         btnMas.setOnClickListener(v -> {
             tv_contador.setText(String.valueOf((contador++) + 1));

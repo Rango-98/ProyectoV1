@@ -6,6 +6,7 @@ public class Producto {
     private int id_proveedor;
     private String sku;
     private String nombre;
+    private String foto;
     private int cantidad;
     private String categoria;
     private String marca;
@@ -19,11 +20,12 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int id, int id_proveedor, String sku, String nombre, int cantidad, String categoria, String marca, String modelo, String tipo, double precio_proveedor, double precio_venta, String codigo_barras, String fecha_ingreso) {
+    public Producto(int id, int id_proveedor, String sku, String nombre, String foto, int cantidad, String categoria, String marca, String modelo, String tipo, double precio_proveedor, double precio_venta, String codigo_barras, String fecha_ingreso) {
         this.id = id;
         this.id_proveedor = id_proveedor;
         this.sku = sku;
         this.nombre = nombre;
+        this.foto = foto;
         this.cantidad = cantidad;
         this.categoria = categoria;
         this.marca = marca;
@@ -49,6 +51,10 @@ public class Producto {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public String getFoto() {
+        return foto;
     }
 
     public int getCantidad() {

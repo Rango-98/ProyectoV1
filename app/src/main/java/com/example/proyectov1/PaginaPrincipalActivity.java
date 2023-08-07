@@ -87,6 +87,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
                                 array.getJSONObject(i).getInt("ID_PROVEEDOR"),
                                 array.getJSONObject(i).getString("SKU"),
                                 array.getJSONObject(i).getString("NOBMBRE"),
+                                array.getJSONObject(i).getString("FOTO"),
                                 array.getJSONObject(i).getInt("CANTIDAD"),
                                 array.getJSONObject(i).getString("CATEGORIA"),
                                 array.getJSONObject(i).getString("MARCA"),
