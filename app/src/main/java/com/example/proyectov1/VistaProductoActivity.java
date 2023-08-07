@@ -21,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.proyectov1.clases.Utilidades;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -65,14 +66,16 @@ public class VistaProductoActivity extends AppCompatActivity {
 
         btnMas.setOnClickListener(v ->{
             tv_contador.setText(String.valueOf((contador++)+1));
+            DecimalFormat decimalFormat = new DecimalFormat("#.0");
              precio_final = precio_venta * contador;
-            txtTotalItems.setText(String.format("$ %s", precio_final));
+            txtTotalItems.setText(String.format("$ %s", decimalFormat.format(precio_final)));
         });
 
         btnMenos.setOnClickListener(v ->{
             tv_contador.setText(String.valueOf((contador--)-1));
+            DecimalFormat decimalFormat = new DecimalFormat("#.0");
             precio_final = precio_final - precio_venta;
-            txtTotalItems.setText(String.format("$ %s", precio_final));
+            txtTotalItems.setText(String.format("$ %s",  decimalFormat.format(precio_final)));
         });
 
         btnAgregar.setOnClickListener(v ->{
