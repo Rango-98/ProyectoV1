@@ -26,6 +26,9 @@
             android:name=".VistaProductoActivity"
             android:exported="false" />
         <activity
+            android:name=".ContactanosActivity"
+            android:exported="false" />
+        <activity
             android:name=".RefaccionesActivity"
             android:exported="false" />
         <activity
@@ -39,7 +42,8 @@
             android:exported="false" />
         <activity
             android:name=".PaginaPrincipalActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Base.Theme.ProyectoV1_bar"/>
         <activity
             android:name=".RegistrarActivity"
             android:exported="false"

@@ -114,8 +114,8 @@
 
                 <ListView
                     android:id="@+id/listProducto"
-                    android:layout_width="417dp"
-                    android:layout_height="285dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp"
                     android:layout_marginTop="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -222,6 +222,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_contactos"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"

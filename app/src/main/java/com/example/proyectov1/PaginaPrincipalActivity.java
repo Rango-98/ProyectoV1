@@ -6,8 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.proyectov1.clases.Adaptador_producto;
@@ -33,7 +32,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
     private TextView txtNombre;
     private String nombre_usuario;
     private ArrayList<Producto> p =  new ArrayList<>();
-    private LinearLayout homeBtn, cerrarSesionbtn, btn_pedidos, btn_carrito;
+    private LinearLayout homeBtn, cerrarSesionbtn, btn_pedidos, btn_carrito, btn_contactos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +46,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
         homeBtn = findViewById(R.id.homeBtn);
         btn_pedidos = findViewById(R.id.btn_pedidos);
         btn_carrito = findViewById(R.id.btn_carrito);
+        btn_contactos = findViewById(R.id.btn_contactos);
         cerrarSesionbtn = findViewById(R.id.cerrarSesionbtn);
 
         txtNombre.setText("Bienvenido: " +  nombre_usuario);
@@ -65,6 +65,10 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
 
         btn_carrito.setOnClickListener(v->{
             startActivity(new Intent(this, carritoActivity.class));
+        });
+
+        btn_contactos.setOnClickListener(v -> {
+            startActivity(new Intent(this, ContactanosActivity.class));
         });
 
         cerrarSesionbtn.setOnClickListener(v ->{
@@ -121,6 +125,29 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_overflow_inicio, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.id_refacciones) {
+            Intent intent = new Intent(this,  PaginaPrincipalActivity.class);
+            intent.putExtra("categoria_refaccion", "refaccion");
+            startActivity(intent);
+
+        }else if(id == R.id.id_otros){
+            Intent intent = new Intent(this,  PaginaPrincipalActivity.class);
+            intent.putExtra("categoria_otros", "casscos");
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     private void cerrar_Sesion(){
         SharedPreferences.Editor datosSesion = getSharedPreferences("dato.dat", MODE_PRIVATE).edit();

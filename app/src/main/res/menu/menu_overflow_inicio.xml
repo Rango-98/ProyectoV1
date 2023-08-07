@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/id_refacciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Refacciones" />
+    <item
+        android:id="@+id/id_otros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Otros" />
+</menu>

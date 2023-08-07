@@ -13,12 +13,11 @@
         android:layout_marginStart="102dp"
         android:layout_marginTop="136dp"
         android:layout_marginEnd="102dp"
-        android:src="@tools:sample/avatars"
+        android:src="@drawable/comprobado1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/comprobado1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtTitulo3"

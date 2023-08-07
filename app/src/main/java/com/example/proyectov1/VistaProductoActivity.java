@@ -64,16 +64,15 @@ public class VistaProductoActivity extends AppCompatActivity {
         tv_contador.setText(String.valueOf(contador));
 
         btnMas.setOnClickListener(v ->{
-            tv_contador.setText(String.valueOf((contador++)-1));
+            tv_contador.setText(String.valueOf((contador++)+1));
              precio_final = precio_venta * contador;
-            txtTotalItems.setText("$ " + precio_final);
-
+            txtTotalItems.setText(String.format("$ %s", precio_final));
         });
 
         btnMenos.setOnClickListener(v ->{
-            tv_contador.setText(String.valueOf(contador--));
-            precio_final = precio_venta / contador;
-            txtTotalItems.setText("$ " + precio_final);
+            tv_contador.setText(String.valueOf((contador--)-1));
+            precio_final = precio_final - precio_venta;
+            txtTotalItems.setText(String.format("$ %s", precio_final));
         });
 
         btnAgregar.setOnClickListener(v ->{
