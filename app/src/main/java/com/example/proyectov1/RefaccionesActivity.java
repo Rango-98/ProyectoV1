@@ -101,6 +101,7 @@ public class RefaccionesActivity extends AppCompatActivity {
 
                 refacciones_list.setOnItemClickListener((adapterView, view, i, l) -> {
                     Producto itemProducto = p.get(i);
+
                     Intent intent = new Intent(context, VistaProductoActivity.class);
                     intent.putExtra("id_producto", itemProducto.getId());
                     intent.putExtra("nombre", itemProducto.getNombre());
