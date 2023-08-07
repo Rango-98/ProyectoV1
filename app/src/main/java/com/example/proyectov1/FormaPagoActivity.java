@@ -133,6 +133,7 @@ public class FormaPagoActivity extends AppCompatActivity {
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
                 Toast.makeText(this, "Pedido generado con exito: " + response, Toast.LENGTH_LONG).show();
                 System.out.println(response);
+                startActivity(new Intent(this, SplashActivity.class));
             }, error -> {
                 Toast.makeText(this, "Error: " + error.getMessage(), Toast.LENGTH_LONG).show();
             }){

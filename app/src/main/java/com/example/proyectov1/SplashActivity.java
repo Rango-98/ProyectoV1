@@ -11,7 +11,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.proyectov1.clases.Pedidos;
+
 import java.lang.annotation.Annotation;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -38,5 +42,17 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         },4000);
+
+
+        TimerTask t = new  TimerTask(){
+            @Override
+            public void run(){
+                startActivity(new Intent(SplashActivity.this, pedidosActivity.class));
+                finish();
+            }
+        };
+
+        Timer timer = new Timer();
+        timer.schedule(t, 7000);
     }
 }
