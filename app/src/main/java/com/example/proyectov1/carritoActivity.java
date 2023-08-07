@@ -34,12 +34,10 @@ public class carritoActivity extends AppCompatActivity {
     private TextView txtPrecioIVA, txtPrecioProducto, txtTotalPrecio;
     private ListView itmProductoCarrito;
     private ConstraintLayout btn_Compra;
-    private int idusuario = 0;
-    private double sumadorCostos = 0;
-    private double IVA = 0.16;
-    private double precioTotal = 0;
-
-    private int codigo_carrito = 0;
+    private int idusuario = 0, codigo_carrito = 0;
+    private double sumadorCostos = 0, precioTotal = 0;
+    private final double IVA = 1.16;
+    private final DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +46,8 @@ public class carritoActivity extends AppCompatActivity {
 
         SharedPreferences datosA = getSharedPreferences("dato.dat", MODE_PRIVATE);
         idusuario = datosA.getInt("idUsuario", 0);
-
         Utilidades utilidades =  new Utilidades();
         cargarCarrito(this, utilidades.getUrl() + "lista_carrito.php");
-
-        System.err.println(sumadorCostos);
 
         itmProductoCarrito = findViewById(R.id.itmProductoCarrito);
         txtPrecioProducto = findViewById(R.id.txtPrecioProducto);
@@ -61,7 +56,6 @@ public class carritoActivity extends AppCompatActivity {
         btn_Compra = findViewById(R.id.btn_Compra);
 
         txtPrecioIVA.setText("16%");
-
     }
 
     private void cargarCarrito(Context context, String url) {
@@ -81,7 +75,6 @@ public class carritoActivity extends AppCompatActivity {
                                 array.getJSONObject(i).getInt("ID_USUARIO"),
                                 array.getJSONObject(i).getInt("CARRITO"),
                                 array.getJSONObject(i).getString("NOMBRE_PRODUCTO")));
-                        System.err.println(array);
 
                         precios.add(array.getJSONObject(i).getDouble("COSTO"));
                         codigo_carrito = array.getJSONObject(0).getInt("CODIGO_CARRITO");
@@ -93,11 +86,9 @@ public class carritoActivity extends AppCompatActivity {
                         i++;
                     }
 
-                    DecimalFormat decimalFormat = new DecimalFormat("#.00");
                     txtPrecioProducto.setText(String.format("$ %s", decimalFormat.format(sumadorCostos)));
                     precioTotal = sumadorCostos * IVA;
                     txtTotalPrecio.setText(String.format("$ %s" ,decimalFormat.format(precioTotal)));
-
 
                     btn_Compra.setOnClickListener(v ->{
                         Intent intent = new Intent(context, FormaPagoActivity.class);
@@ -107,9 +98,12 @@ public class carritoActivity extends AppCompatActivity {
 
                 }
 
-                Adaptador_Carrito adaptadorCarrito = new Adaptador_Carrito(context, carritos);
-                itmProductoCarrito.setAdapter(adaptadorCarrito);
-
+                if(carritos.size() != 0){
+                    Adaptador_Carrito adaptadorCarrito = new Adaptador_Carrito(context, carritos);
+                    itmProductoCarrito.setAdapter(adaptadorCarrito);
+                }else{
+                 Toast.makeText(context, "No has agregado ningun producto al carrito", Toast.LENGTH_LONG).show();
+                }
 
             } catch (JSONException exception) {
                 System.err.println("Error Json:" + exception.getMessage());
