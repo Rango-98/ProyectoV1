@@ -23,6 +23,7 @@ import com.example.proyectov1.clases.Carrito;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -92,15 +93,18 @@ public class carritoActivity extends AppCompatActivity {
                         i++;
                     }
 
-                    txtPrecioProducto.setText("$ " + sumadorCostos);
+                    DecimalFormat decimalFormat = new DecimalFormat("#.00");
+                    txtPrecioProducto.setText(String.format("$ %s", decimalFormat.format(sumadorCostos)));
                     precioTotal = sumadorCostos * IVA;
-                    txtTotalPrecio.setText(String.valueOf(precioTotal));
+                    txtTotalPrecio.setText(String.format("$ %s" ,decimalFormat.format(precioTotal)));
+
 
                     btn_Compra.setOnClickListener(v ->{
                         Intent intent = new Intent(context, FormaPagoActivity.class);
                         intent.putExtra("codigo_carrito", codigo_carrito);
                         startActivity(intent);
                     });
+
                 }
 
                 Adaptador_Carrito adaptadorCarrito = new Adaptador_Carrito(context, carritos);

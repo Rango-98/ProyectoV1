@@ -63,7 +63,7 @@ public class VistaProductoActivity extends AppCompatActivity {
 
         btnMas.setOnClickListener(v ->{
             tv_contador.setText(String.valueOf((contador++)+1));
-            DecimalFormat decimalFormat = new DecimalFormat("#.0");
+            DecimalFormat decimalFormat = new DecimalFormat("#.00");
              precio_final = precio_venta * contador;
             txtTotalItems.setText(String.format("$ %s", decimalFormat.format(precio_final)));
         });
