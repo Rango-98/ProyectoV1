@@ -2,7 +2,9 @@ package com.example.proyectov1;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -19,11 +21,13 @@ public class SplashActivity extends AppCompatActivity {
     private final String ID_CANAL = "NOTIFICATION";
     private final String canal = "notification";
 
+    @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
+        getWindow().setStatusBarColor(Color.WHITE);
 
         //animaciones
         Animation animacion1 = AnimationUtils.loadAnimation(this, R.anim.desplazamiento_arriba);
@@ -44,6 +48,9 @@ public class SplashActivity extends AppCompatActivity {
         crearNotificacion.setContentTitle("Refacciones Tony");
         crearNotificacion.setContentText("Tu compra se a realizado conn exito");
         crearNotificacion.setColor(Color.BLACK);
+
+        NotificationManagerCompat desplegarNotificacion = NotificationManagerCompat.from(this);
+        desplegarNotificacion.notify(0, crearNotificacion.build());
 
         new Handler().postDelayed(new Runnable() {
             @Override
