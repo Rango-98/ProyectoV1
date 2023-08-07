@@ -49,7 +49,7 @@ public class Adaptador_Carrito extends BaseAdapter {
 
         img_previwq.setImageResource(R.drawable.shopping);
         tv_titulo_carrito.setText(item.getNombre_producto());
-        tv_cantidad_carrito.setText("" + item.getCantidad());
+        tv_cantidad_carrito.setText("Cantidad de objetos seleccionado: " + item.getCantidad());
         tv_precio_carrito.setText("$ " + item.getCosto());
 
         return view;
