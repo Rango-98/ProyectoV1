@@ -84,7 +84,6 @@ public class VistaProductoActivity extends AppCompatActivity {
                 System.out.println(error.getMessage());
                 Toast.makeText(this, "Error: " + error.getMessage(), Toast.LENGTH_LONG).show();
             }) {
-                @Nullable
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> param = new HashMap<>();
