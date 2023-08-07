@@ -33,15 +33,18 @@ public class VistaProductoActivity extends AppCompatActivity {
     private double precio_venta = 0.0, precio_final = 0.0;
     private String url = "";
     private int idusuario = 0, idproducto = 0, contador = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vista_producto);
 
+        DecimalFormat decimalFormat = new DecimalFormat("#.0");
+
         SharedPreferences datosA = getSharedPreferences("dato.dat", MODE_PRIVATE);
         idusuario = datosA.getInt("idUsuario", 0);
 
-        Utilidades utilidades =  new Utilidades();
+        Utilidades utilidades = new Utilidades();
         url = utilidades.getUrl() + "llenar_carrito.php";
 
         txtTituloProducto = findViewById(R.id.txtTituloProducto);
@@ -50,7 +53,7 @@ public class VistaProductoActivity extends AppCompatActivity {
         tv_contador = findViewById(R.id.tv_contador);
         btnMas = findViewById(R.id.btnMas);
         btnMenos = findViewById(R.id.btnMenos);
-        btnAgregar  = findViewById(R.id.btnAgregar);
+        btnAgregar = findViewById(R.id.btnAgregar);
         btnCancelar = findViewById(R.id.btnCancelar);
 
         Bundle bundle = getIntent().getExtras();
@@ -61,27 +64,26 @@ public class VistaProductoActivity extends AppCompatActivity {
         txtTotalItems.setText("$ " + precio_venta);
         tv_contador.setText(String.valueOf(contador));
 
-        btnMas.setOnClickListener(v ->{
-            tv_contador.setText(String.valueOf((contador++)+1));
-            DecimalFormat decimalFormat = new DecimalFormat("#.00");
-             precio_final = precio_venta * contador;
+        btnMas.setOnClickListener(v -> {
+            tv_contador.setText(String.valueOf((contador++) + 1));
+            precio_final = precio_venta * contador;
             txtTotalItems.setText(String.format("$ %s", decimalFormat.format(precio_final)));
         });
 
-        btnMenos.setOnClickListener(v ->{
-            tv_contador.setText(String.valueOf((contador--)-1));
-            DecimalFormat decimalFormat = new DecimalFormat("#.0");
+        btnMenos.setEnabled(true);
+        btnMenos.setOnClickListener(v -> {
+            tv_contador.setText(String.valueOf((contador--) - 1));
             precio_final = precio_final - precio_venta;
-            txtTotalItems.setText(String.format("$ %s",  decimalFormat.format(precio_final)));
+            txtTotalItems.setText(String.format("$ %s", decimalFormat.format(precio_final)));
         });
 
-        btnAgregar.setOnClickListener(v ->{
+        btnAgregar.setOnClickListener(v -> {
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
 
             }, error -> {
                 System.out.println(error.getMessage());
                 Toast.makeText(this, "Error: " + error.getMessage(), Toast.LENGTH_LONG).show();
-            }){
+            }) {
                 @Nullable
                 @Override
                 protected Map<String, String> getParams() {
@@ -98,7 +100,7 @@ public class VistaProductoActivity extends AppCompatActivity {
             queue.add(stringRequest);
         });
 
-        btnCancelar.setOnClickListener(v ->{
+        btnCancelar.setOnClickListener(v -> {
             startActivity(new Intent(this, PaginaPrincipalActivity.class));
             finish();
         });
