@@ -29,10 +29,7 @@ import java.util.ArrayList;
 public class PaginaPrincipalActivity extends AppCompatActivity {
 
     private ListView listProducto;
-    private TextView txtNombre;
-    private String nombre_usuario;
     private ArrayList<Producto> p =  new ArrayList<>();
-    private LinearLayout homeBtn, cerrarSesionbtn, btn_pedidos, btn_carrito, btn_contactos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,16 +37,16 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pagina_principal);
 
         SharedPreferences datosA = getSharedPreferences("dato.dat", MODE_PRIVATE);
-        nombre_usuario = datosA.getString("nombre", "usuario");
+        String nombre_usuario = datosA.getString("nombre", "usuario");
 
-        txtNombre = findViewById(R.id.txtNombre);
-        homeBtn = findViewById(R.id.homeBtn);
-        btn_pedidos = findViewById(R.id.btn_pedidos);
-        btn_carrito = findViewById(R.id.btn_carrito);
-        btn_contactos = findViewById(R.id.btn_contactos);
-        cerrarSesionbtn = findViewById(R.id.cerrarSesionbtn);
+        TextView txtNombre = findViewById(R.id.txtNombre);
+        LinearLayout homeBtn = findViewById(R.id.homeBtn);
+        LinearLayout btn_pedidos = findViewById(R.id.btn_pedidos);
+        LinearLayout btn_carrito = findViewById(R.id.btn_carrito);
+        LinearLayout btn_contactos = findViewById(R.id.btn_contactos);
+        LinearLayout cerrarSesionbtn = findViewById(R.id.cerrarSesionbtn);
 
-        txtNombre.setText("Bienvenido: " +  nombre_usuario);
+        txtNombre.setText(String.format("Bienvenido: %s", nombre_usuario));
         listProducto = findViewById(R.id.listProducto);
 
         Utilidades utilidades = new Utilidades();
@@ -57,18 +54,22 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
 
         homeBtn.setOnClickListener(v->{
             startActivity(new Intent(this, PaginaPrincipalActivity.class));
+            finish();
         });
 
         btn_pedidos.setOnClickListener(v ->{
-            startActivity(new Intent(this, pedidosActivity.class));
+            startActivity(new Intent(this, PedidosActivity.class));
+            finish();
         });
 
         btn_carrito.setOnClickListener(v->{
             startActivity(new Intent(this, carritoActivity.class));
+            finish();
         });
 
         btn_contactos.setOnClickListener(v -> {
             startActivity(new Intent(this, ContactanosActivity.class));
+            finish();
         });
 
         cerrarSesionbtn.setOnClickListener(v ->{
@@ -148,7 +149,6 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
     private void cerrar_Sesion(){
         SharedPreferences.Editor datosSesion = getSharedPreferences("dato.dat", MODE_PRIVATE).edit();
         datosSesion.clear();

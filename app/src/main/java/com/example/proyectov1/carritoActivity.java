@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,9 +30,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class carritoActivity extends AppCompatActivity {
-    private ArrayList<Carrito> carritos = new ArrayList<>();
-    private ArrayList<Double> precios = new ArrayList<Double>();
-    private TextView txtPrecioIVA, txtPrecioProducto, txtTotalPrecio;
+    private final ArrayList<Carrito> carritos = new ArrayList<>();
+    private final ArrayList<Double> precios = new ArrayList<>();
+    private TextView txtPrecioProducto;
+    private TextView txtTotalPrecio;
     private ListView itmProductoCarrito;
     private ConstraintLayout btn_Compra;
     private int idusuario = 0, codigo_carrito = 0;
@@ -51,11 +53,42 @@ public class carritoActivity extends AppCompatActivity {
 
         itmProductoCarrito = findViewById(R.id.itmProductoCarrito);
         txtPrecioProducto = findViewById(R.id.txtPrecioProducto);
-        txtPrecioIVA = findViewById(R.id.txtPrecioIVA);
+        TextView txtPrecioIVA = findViewById(R.id.txtPrecioIVA);
         txtTotalPrecio = findViewById(R.id.txtTotalPrecio);
         btn_Compra = findViewById(R.id.btn_Compra);
 
+        LinearLayout homeBtnc = findViewById(R.id.homeBtnc);
+        LinearLayout btn_pedidosc = findViewById(R.id.btn_pedidosc);
+        LinearLayout btn_carritoc = findViewById(R.id.btn_carritoc);
+        LinearLayout btn_contactosc = findViewById(R.id.btn_contactosc);
+        LinearLayout btn_cerrarSesionbtnc = findViewById(R.id.btn_cerrarSesionbtnc);
+
         txtPrecioIVA.setText("16%");
+
+        homeBtnc.setOnClickListener(v->{
+            startActivity(new Intent(this, PaginaPrincipalActivity.class));
+            finish();
+        });
+
+        btn_pedidosc.setOnClickListener(v ->{
+            startActivity(new Intent(this, PedidosActivity.class));
+            finish();
+        });
+
+        btn_carritoc.setOnClickListener(v->{
+            startActivity(new Intent(this, carritoActivity.class));
+            finish();
+        });
+
+        btn_contactosc.setOnClickListener(v -> {
+            startActivity(new Intent(this, ContactanosActivity.class));
+            finish();
+        });
+
+        btn_cerrarSesionbtnc.setOnClickListener(v ->{
+            cerrar_Sesion();
+        });
+
     }
 
     private void cargarCarrito(Context context, String url) {
@@ -120,5 +153,16 @@ public class carritoActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(stringRequest);
+    }
+
+    private void cerrar_Sesion(){
+        SharedPreferences.Editor datosSesion = getSharedPreferences("dato.dat", MODE_PRIVATE).edit();
+        datosSesion.clear();
+        datosSesion.apply();
+
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 }

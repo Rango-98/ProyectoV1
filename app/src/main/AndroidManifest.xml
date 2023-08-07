@@ -76,7 +76,7 @@
                 android:value=".PaginaPrincipalActivity" />
         </activity>
         <activity
-            android:name=".pedidosActivity"
+            android:name=".PedidosActivity"
             android:exported="false"
             android:label="Pedidos"
             android:theme="@style/Base.Theme.ProyectoV1_bar"

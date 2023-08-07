@@ -186,7 +186,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/homeBtn"
+                    android:id="@+id/homeBtnc"
                     android:layout_width="0dp"
                     android:layout_height="45dp"
                     android:layout_weight="0.2"
@@ -210,6 +210,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_pedidosc"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -233,6 +234,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_carritoc"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -257,6 +259,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_contactosc"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -280,6 +283,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_cerrarSesionbtnc"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"

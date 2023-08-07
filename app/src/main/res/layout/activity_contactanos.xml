@@ -84,7 +84,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/homeBtn"
+                    android:id="@+id/homeBtnco"
                     android:layout_width="0dp"
                     android:layout_height="45dp"
                     android:layout_weight="0.2"
@@ -108,7 +108,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btn_pedidos"
+                    android:id="@+id/btn_pedidosco"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -132,7 +132,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btn_carrito"
+                    android:id="@+id/btn_carritoco"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -157,6 +157,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_contactosco"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -180,7 +181,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/cerrarSesionbtn"
+                    android:id="@+id/cerrarSesionbtnco"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"

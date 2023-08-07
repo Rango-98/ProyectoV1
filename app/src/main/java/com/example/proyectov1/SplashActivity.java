@@ -15,12 +15,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.proyectov1.clases.Pedidos;
-
-import java.lang.annotation.Annotation;
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class SplashActivity extends AppCompatActivity {
     private final String ID_CANAL = "NOTIFICATION";
     private final String canal = "notification";
@@ -54,7 +48,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, pedidosActivity.class);
+                Intent intent = new Intent(SplashActivity.this, PedidosActivity.class);
                 startActivity(intent);
             }
         },4000);
