@@ -261,7 +261,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/homeBtn"
+                    android:id="@+id/homeBtnf"
                     android:layout_width="0dp"
                     android:layout_height="45dp"
                     android:layout_weight="0.2"
@@ -285,6 +285,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_pedidosf"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -308,6 +309,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_carritof"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -332,6 +334,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_contactosf"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -355,6 +358,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/cerrarSesionbtnf"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"

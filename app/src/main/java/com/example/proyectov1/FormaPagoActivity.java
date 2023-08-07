@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +30,7 @@ import java.util.Map;
 
 public class FormaPagoActivity extends AppCompatActivity {
 
-    private Button btnFoto, btnPagar;
+    private Button btnFoto;
     private CheckBox rdbVisa, rdbTienda, rdbAgregar;
     private TextView edtNumTarjeta, et_nombreTitular, edtFecha, edtCCV;
     private String nombre_usuario;
@@ -38,6 +39,8 @@ public class FormaPagoActivity extends AppCompatActivity {
     private int codigo_carrito = 0;
     private int idusuario = 0;
     private String url =  "";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +68,13 @@ public class FormaPagoActivity extends AppCompatActivity {
         edtFecha = findViewById(R.id.edtFecha);
         edtCCV = findViewById(R.id.edtCCV);
         btnFoto = findViewById(R.id.btnFoto);
-        btnPagar = findViewById(R.id.btnPagar);
+        Button btnPagar = findViewById(R.id.btnPagar);
+
+        LinearLayout homeBtnf = findViewById(R.id.homeBtnf);
+        LinearLayout btn_pedidosf = findViewById(R.id.btn_pedidosf);
+        LinearLayout btn_carritof = findViewById(R.id.btn_carritof);
+        LinearLayout btn_contactosf = findViewById(R.id.btn_contactosf);
+        LinearLayout cerrarSesionbtnf = findViewById(R.id.cerrarSesionbtnf);
 
         edtNumTarjeta.setVisibility(View.GONE);
         et_nombreTitular.setVisibility(View.GONE);
@@ -151,6 +160,30 @@ public class FormaPagoActivity extends AppCompatActivity {
             queue.add(stringRequest);
         });
 
+        homeBtnf.setOnClickListener(v->{
+            startActivity(new Intent(this, PaginaPrincipalActivity.class));
+            finish();
+        });
+
+        btn_pedidosf.setOnClickListener(v ->{
+            startActivity(new Intent(this, PedidosActivity.class));
+            finish();
+        });
+
+        btn_carritof.setOnClickListener(v->{
+            startActivity(new Intent(this, carritoActivity.class));
+            finish();
+        });
+
+        btn_contactosf.setOnClickListener(v -> {
+            startActivity(new Intent(this, ContactanosActivity.class));
+            finish();
+        });
+
+        cerrarSesionbtnf.setOnClickListener(v ->{
+            cerrar_Sesion();
+        });
+
     }
 
     @Override
@@ -172,5 +205,16 @@ public class FormaPagoActivity extends AppCompatActivity {
         et_nombreTitular.setText("");
         edtFecha.setText("");
         edtCCV.setText("");
+    }
+
+    private void cerrar_Sesion(){
+        SharedPreferences.Editor datosSesion = getSharedPreferences("dato.dat", MODE_PRIVATE).edit();
+        datosSesion.clear();
+        datosSesion.apply();
+
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 }

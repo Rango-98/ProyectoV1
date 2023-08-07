@@ -79,6 +79,7 @@ public class VistaProductoActivity extends AppCompatActivity {
 
         btnAgregar.setOnClickListener(v -> {
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
+                startActivity(new Intent(this, carritoActivity.class));
 
             }, error -> {
                 System.out.println(error.getMessage());
