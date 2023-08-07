@@ -30,12 +30,9 @@ public class VistaProductoActivity extends AppCompatActivity {
     private TextView txtTituloProducto, txt_precioProducto, txtTotalItems, tv_contador;
     private ImageView btnMas, btnMenos;
     private Button btnAgregar, btnCancelar;
-    private int contador = 1;
-    private double precio_venta = 0.0;
-    private double precio_final = 0.0;
+    private double precio_venta = 0.0, precio_final = 0.0;
     private String url = "";
-    private int idusuario = 0;
-    private int idproducto = 0;
+    private int idusuario = 0, idproducto = 0, contador = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
