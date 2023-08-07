@@ -142,7 +142,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
 
         }else if(id == R.id.id_otros){
             Intent intent = new Intent(this,  RefaccionesActivity.class);
-            intent.putExtra("categoria_otros", "casscos");
+            intent.putExtra("categoria_refaccion", "casco");
             startActivity(intent);
         }
 

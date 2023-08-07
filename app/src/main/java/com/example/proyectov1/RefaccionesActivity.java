@@ -35,8 +35,10 @@ public class RefaccionesActivity extends AppCompatActivity {
 
         refacciones_list = findViewById(R.id.refacciones_list);
 
+        Bundle bundle = getIntent().getExtras();
+
         Utilidades utilidades = new Utilidades();
-        cargarProductos(this, utilidades.getUrl() + "productos_pupulares.php");
+        cargarProductos(this, utilidades.getUrl() + "producto_categoria.php?categoria=" + bundle.getString("categoria_refaccion"));
 
         LinearLayout homeBtnr = findViewById(R.id.homeBtnr);
         LinearLayout btn_pedidosr = findViewById(R.id.btn_pedidosr);
