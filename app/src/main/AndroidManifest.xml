@@ -27,25 +27,68 @@
             android:exported="false" />
         <activity
             android:name=".VistaProductoActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Agregar al carrito"
+            android:theme="@style/Base.Theme.ProyectoV1_bar"
+            android:parentActivityName=".PaginaPrincipalActivity">
+            <meta-data
+                android:name="android.support.PARENT_CURRENT"
+                android:value=".PaginaPrincipalActivity" />
+        </activity>
         <activity
             android:name=".ContactanosActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Contactanos"
+            android:theme="@style/Base.Theme.ProyectoV1_bar"
+            android:parentActivityName=".PaginaPrincipalActivity">
+            <meta-data
+                android:name="android.support.PARENT_CURRENT"
+                android:value=".PaginaPrincipalActivity" />
+        </activity>
         <activity
             android:name=".RefaccionesActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Refacciones"
+            android:theme="@style/Base.Theme.ProyectoV1_bar"
+            android:parentActivityName=".PaginaPrincipalActivity">
+            <meta-data
+                android:name="android.support.PARENT_CURRENT"
+                android:value=".PaginaPrincipalActivity" />
+        </activity>
         <activity
             android:name=".FormaPagoActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Formas de pago"
+            android:theme="@style/Base.Theme.ProyectoV1_bar"
+            android:parentActivityName=".carritoActivity">
+            <meta-data
+                android:name="android.support.PARENT_CURRENT"
+                android:value=".carritoActivity" />
+        </activity>
         <activity
             android:name=".carritoActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Carrito"
+            android:theme="@style/Base.Theme.ProyectoV1_bar"
+            android:parentActivityName=".PaginaPrincipalActivity">
+            <meta-data
+                android:name="android.support.PARENT_CURRENT"
+                android:value=".PaginaPrincipalActivity" />
+        </activity>
         <activity
             android:name=".pedidosActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Pedidos"
+            android:theme="@style/Base.Theme.ProyectoV1_bar"
+            android:parentActivityName=".PaginaPrincipalActivity">
+            <meta-data
+                android:name="android.support.PARENT_CURRENT"
+                android:value=".PaginaPrincipalActivity" />
+        </activity>
         <activity
             android:name=".PaginaPrincipalActivity"
             android:exported="false"
+            android:label="Pagina principal"
             android:theme="@style/Base.Theme.ProyectoV1_bar"/>
         <activity
             android:name=".RegistrarActivity"
