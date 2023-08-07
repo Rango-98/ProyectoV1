@@ -1,8 +1,12 @@
 package com.example.proyectov1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
@@ -18,6 +22,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class SplashActivity extends AppCompatActivity {
+    private final String ID_CANAL = "NOTIFICATION";
+    private final String canal = "notification";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,17 @@ public class SplashActivity extends AppCompatActivity {
 
         textView.setAnimation(animacion2);
         imageView.setAnimation(animacion1);
+
+
+        NotificationChannel canalNotificacion = new NotificationChannel(ID_CANAL, canal, NotificationManager.IMPORTANCE_DEFAULT);
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        manager.createNotificationChannel(canalNotificacion );
+
+        NotificationCompat.Builder crearNotificacion = new NotificationCompat.Builder(this, ID_CANAL);
+        crearNotificacion.setSmallIcon(R.drawable.shopping);
+        crearNotificacion.setContentTitle("Refacciones Tony");
+        crearNotificacion.setContentText("Tu compra se a realizado conn exito");
+        crearNotificacion.setColor(Color.BLACK);
 
         new Handler().postDelayed(new Runnable() {
             @Override
