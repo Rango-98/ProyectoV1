@@ -27,9 +27,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 public class PaginaPrincipalActivity extends AppCompatActivity {
-
     private ListView listProducto;
-    private ArrayList<Producto> p =  new ArrayList<>();
+    private final ArrayList<Producto> p =  new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +49,7 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
         listProducto = findViewById(R.id.listProducto);
 
         Utilidades utilidades = new Utilidades();
-        cargarProductosPopulares(this, utilidades.getUrl() + "productos.php");
+        cargarProductosPopulares(this, utilidades.getUrl() + "productos_pupulares.php");
 
         homeBtn.setOnClickListener(v->{
             startActivity(new Intent(this, PaginaPrincipalActivity.class));
@@ -137,12 +136,12 @@ public class PaginaPrincipalActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.id_refacciones) {
-            Intent intent = new Intent(this,  PaginaPrincipalActivity.class);
+            Intent intent = new Intent(this,  RefaccionesActivity.class);
             intent.putExtra("categoria_refaccion", "refaccion");
             startActivity(intent);
 
         }else if(id == R.id.id_otros){
-            Intent intent = new Intent(this,  PaginaPrincipalActivity.class);
+            Intent intent = new Intent(this,  RefaccionesActivity.class);
             intent.putExtra("categoria_otros", "casscos");
             startActivity(intent);
         }

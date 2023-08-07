@@ -30,6 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ListView
+                android:id="@+id/refacciones_list"
                 android:layout_width="410dp"
                 android:layout_height="598dp"
                 android:layout_marginEnd="1dp"
@@ -62,7 +63,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/homeBtn"
+                    android:id="@+id/homeBtnr"
                     android:layout_width="0dp"
                     android:layout_height="45dp"
                     android:layout_weight="0.2"
@@ -86,6 +87,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_pedidosr"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -109,6 +111,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_carritor"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -133,6 +136,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_contactosr"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -156,6 +160,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/cerrarSesionbtnr"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
