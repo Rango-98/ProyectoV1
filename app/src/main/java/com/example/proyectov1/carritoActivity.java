@@ -1,13 +1,17 @@
 package com.example.proyectov1;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Constraints;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -40,6 +44,7 @@ public class carritoActivity extends AppCompatActivity {
     private double sumadorCostos = 0, precioTotal = 0;
     private final double IVA = 1.16;
     private final DecimalFormat decimalFormat = new DecimalFormat("#.00");
+    private Utilidades utilidades = new Utilidades();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +53,7 @@ public class carritoActivity extends AppCompatActivity {
 
         SharedPreferences datosA = getSharedPreferences("dato.dat", MODE_PRIVATE);
         idusuario = datosA.getInt("idUsuario", 0);
-        Utilidades utilidades =  new Utilidades();
+
         cargarCarrito(this, utilidades.getUrl() + "lista_carrito.php");
 
         itmProductoCarrito = findViewById(R.id.itmProductoCarrito);
@@ -65,17 +70,17 @@ public class carritoActivity extends AppCompatActivity {
 
         txtPrecioIVA.setText("16%");
 
-        homeBtnc.setOnClickListener(v->{
+        homeBtnc.setOnClickListener(v -> {
             startActivity(new Intent(this, PaginaPrincipalActivity.class));
             finish();
         });
 
-        btn_pedidosc.setOnClickListener(v ->{
+        btn_pedidosc.setOnClickListener(v -> {
             startActivity(new Intent(this, PedidosActivity.class));
             finish();
         });
 
-        btn_carritoc.setOnClickListener(v->{
+        btn_carritoc.setOnClickListener(v -> {
             startActivity(new Intent(this, carritoActivity.class));
             finish();
         });
@@ -85,7 +90,7 @@ public class carritoActivity extends AppCompatActivity {
             finish();
         });
 
-        btn_cerrarSesionbtnc.setOnClickListener(v ->{
+        btn_cerrarSesionbtnc.setOnClickListener(v -> {
             cerrar_Sesion();
         });
 
@@ -112,18 +117,17 @@ public class carritoActivity extends AppCompatActivity {
                         precios.add(array.getJSONObject(i).getDouble("COSTO"));
                         codigo_carrito = array.getJSONObject(0).getInt("CODIGO_CARRITO");
 
-                        for (Double e: precios) {
+                        for (Double e : precios) {
                             sumadorCostos = sumadorCostos + e;
                         }
-
                         i++;
                     }
 
                     txtPrecioProducto.setText(String.format("$ %s", decimalFormat.format(sumadorCostos)));
                     precioTotal = sumadorCostos * IVA;
-                    txtTotalPrecio.setText(String.format("$ %s" ,decimalFormat.format(precioTotal)));
+                    txtTotalPrecio.setText(String.format("$ %s", decimalFormat.format(precioTotal)));
 
-                    btn_Compra.setOnClickListener(v ->{
+                    btn_Compra.setOnClickListener(v -> {
                         Intent intent = new Intent(context, FormaPagoActivity.class);
                         intent.putExtra("codigo_carrito", codigo_carrito);
                         startActivity(intent);
@@ -131,20 +135,43 @@ public class carritoActivity extends AppCompatActivity {
 
                 }
 
-                if(carritos.size() != 0){
+                if (carritos.size() != 0) {
                     Adaptador_Carrito adaptadorCarrito = new Adaptador_Carrito(context, carritos);
                     itmProductoCarrito.setAdapter(adaptadorCarrito);
-                }else{
-                 Toast.makeText(context, "No has agregado ningun producto al carrito", Toast.LENGTH_LONG).show();
+
+                    itmProductoCarrito.setOnItemClickListener((adapterView, view, i, l) -> {
+                        AlertDialog.Builder crearMensaje = new AlertDialog.Builder(context);
+                        crearMensaje.setIcon(R.drawable.shopping)
+                                .setTitle("Quitar de carrito")
+                                .setMessage("¿Desea quitar este objeto del carrito?")
+                                .setCancelable(false)
+                                .setPositiveButton("Si", (dialogInterface, i12) -> {
+                                    AlertDialog.Builder crearMensaje2 = new AlertDialog.Builder(context);
+                                    crearMensaje2 .setTitle("Quitar de carrito")
+                                            .setIcon(R.drawable.shopping)
+                                            .setMessage("Articulo quitado del carrito")
+                                            .setPositiveButton("Aceptar", (dialogInterface1, i13) -> {
+                                                itmProductoCarrito.setAdapter(adaptadorCarrito);
+                                            }).show();
+
+                                    AlertDialog generar2 = crearMensaje2.create();
+
+                                }).setNegativeButton("No", (dialogInterface, i1) -> {
+                                    dialogInterface.cancel();
+                                }).show();
+
+                                AlertDialog generar = crearMensaje.create();
+                    });
+                } else {
+                    Toast.makeText(context, "No has agregado ningun producto al carrito", Toast.LENGTH_LONG).show();
                 }
 
             } catch (JSONException exception) {
                 System.err.println("Error Json:" + exception.getMessage());
             }
-        }, error -> Toast.makeText(context, "Error: " + error.getMessage(), Toast.LENGTH_LONG).show())
-        {
+        }, error -> Toast.makeText(context, "Error: " + error.getMessage(), Toast.LENGTH_LONG).show()) {
             @Override
-            protected Map<String, String> getParams()  {
+            protected Map<String, String> getParams() {
                 Map<String, String> param = new HashMap<>();
                 param.put("idusuario", String.valueOf(idusuario));
                 return param;
@@ -155,7 +182,11 @@ public class carritoActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    private void cerrar_Sesion(){
+    private void quitarArticuloCarrito(){
+
+    }
+
+    private void cerrar_Sesion() {
         SharedPreferences.Editor datosSesion = getSharedPreferences("dato.dat", MODE_PRIVATE).edit();
         datosSesion.clear();
         datosSesion.apply();
