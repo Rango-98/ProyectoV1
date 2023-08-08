@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.proyectov1.clases.Adaptador_Carrito;
@@ -34,8 +36,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class carritoActivity extends AppCompatActivity {
-    private final ArrayList<Carrito> carritos = new ArrayList<>();
-    private final ArrayList<Double> precios = new ArrayList<>();
+    private ArrayList<Carrito> carritos;
+    private ArrayList<Double> precios = new ArrayList<>();
     private TextView txtPrecioProducto;
     private TextView txtTotalPrecio;
     private ListView itmProductoCarrito;
@@ -45,6 +47,7 @@ public class carritoActivity extends AppCompatActivity {
     private final double IVA = 1.16;
     private final DecimalFormat decimalFormat = new DecimalFormat("#.00");
     private Utilidades utilidades = new Utilidades();
+    private Adaptador_Carrito adaptadorCarrito;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +100,7 @@ public class carritoActivity extends AppCompatActivity {
     }
 
     private void cargarCarrito(Context context, String url) {
+        carritos = new ArrayList<>();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
             try {
                 if (!response.equals("0")) {
@@ -136,10 +140,12 @@ public class carritoActivity extends AppCompatActivity {
                 }
 
                 if (carritos.size() != 0) {
-                    Adaptador_Carrito adaptadorCarrito = new Adaptador_Carrito(context, carritos);
+                    adaptadorCarrito = new Adaptador_Carrito(context, carritos);
                     itmProductoCarrito.setAdapter(adaptadorCarrito);
 
                     itmProductoCarrito.setOnItemClickListener((adapterView, view, i, l) -> {
+                        Carrito itemCarrito = carritos.get(i);
+
                         AlertDialog.Builder crearMensaje = new AlertDialog.Builder(context);
                         crearMensaje.setIcon(R.drawable.shopping)
                                 .setTitle("Quitar de carrito")
@@ -151,6 +157,11 @@ public class carritoActivity extends AppCompatActivity {
                                             .setIcon(R.drawable.shopping)
                                             .setMessage("Articulo quitado del carrito")
                                             .setPositiveButton("Aceptar", (dialogInterface1, i13) -> {
+                                                quitarArticuloCarrito(context, utilidades.getUrl() + "quitarproductocarrito.php?idusuario=" + idusuario
+                                                        + "&idproducto=" + itemCarrito.getId_producto()
+                                                        + "&codigocarrito=" + itemCarrito.getCodigo_carrito());
+
+                                                cargarCarrito(this, utilidades.getUrl() + "lista_carrito.php");
                                                 itmProductoCarrito.setAdapter(adaptadorCarrito);
                                             }).show();
 
@@ -182,8 +193,18 @@ public class carritoActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    private void quitarArticuloCarrito(){
+    private void quitarArticuloCarrito(Context context, String url){
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
+            Toast.makeText(context, "Articulo quitado con exito", Toast.LENGTH_LONG).show();
+            carritos = new ArrayList<>();
+            cargarCarrito(this, utilidades.getUrl() + "lista_carrito.php");
+            adaptadorCarrito = new Adaptador_Carrito(context, carritos);
+            itmProductoCarrito.setAdapter(adaptadorCarrito);
 
+        }, error -> Toast.makeText(context, "Error: " + error.getMessage(), Toast.LENGTH_LONG).show());
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(stringRequest);
     }
 
     private void cerrar_Sesion() {
