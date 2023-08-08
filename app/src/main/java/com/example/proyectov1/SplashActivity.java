@@ -46,7 +46,7 @@ public class SplashActivity extends AppCompatActivity {
         NotificationCompat.Builder crearNotificacion = new NotificationCompat.Builder(this, ID_CANAL);
         crearNotificacion.setSmallIcon(R.drawable.shopping);
         crearNotificacion.setContentTitle("Refacciones Tony");
-        crearNotificacion.setContentText("Tu compra se a realizado conn exito");
+        crearNotificacion.setContentText("Tu compra se a realizado con exito");
         crearNotificacion.setColor(Color.BLACK);
 
         NotificationManagerCompat desplegarNotificacion = NotificationManagerCompat.from(this);

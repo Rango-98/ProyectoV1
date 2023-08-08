@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Constraints;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -37,7 +38,7 @@ import java.util.Map;
 
 public class carritoActivity extends AppCompatActivity {
     private ArrayList<Carrito> carritos;
-    private ArrayList<Double> precios = new ArrayList<>();
+    private ArrayList<Double> precios;
     private TextView txtPrecioProducto;
     private TextView txtTotalPrecio;
     private ListView itmProductoCarrito;
@@ -100,7 +101,9 @@ public class carritoActivity extends AppCompatActivity {
     }
 
     private void cargarCarrito(Context context, String url) {
+        itmProductoCarrito = findViewById(R.id.itmProductoCarrito);
         carritos = new ArrayList<>();
+        precios = new ArrayList<>();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
             try {
                 if (!response.equals("0")) {
@@ -161,7 +164,6 @@ public class carritoActivity extends AppCompatActivity {
                                                         + "&idproducto=" + itemCarrito.getId_producto()
                                                         + "&codigocarrito=" + itemCarrito.getCodigo_carrito());
 
-                                                cargarCarrito(this, utilidades.getUrl() + "lista_carrito.php");
                                                 itmProductoCarrito.setAdapter(adaptadorCarrito);
                                             }).show();
 
@@ -195,11 +197,22 @@ public class carritoActivity extends AppCompatActivity {
 
     private void quitarArticuloCarrito(Context context, String url){
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
-            Toast.makeText(context, "Articulo quitado con exito", Toast.LENGTH_LONG).show();
+
+            precios = new ArrayList<>();
             carritos = new ArrayList<>();
+            precios.clear();
+            precios.clear();
             cargarCarrito(this, utilidades.getUrl() + "lista_carrito.php");
+            sumadorCostos = 0; precioTotal = 0;
+
             adaptadorCarrito = new Adaptador_Carrito(context, carritos);
             itmProductoCarrito.setAdapter(adaptadorCarrito);
+
+            txtPrecioProducto.setText(String.format("$ %s", decimalFormat.format(sumadorCostos)));
+            precioTotal = sumadorCostos * IVA;
+            txtTotalPrecio.setText(String.format("$ %s", decimalFormat.format(precioTotal)));
+
+            Toast.makeText(context, "Articulo quitado con exito", Toast.LENGTH_LONG).show();
 
         }, error -> Toast.makeText(context, "Error: " + error.getMessage(), Toast.LENGTH_LONG).show());
 
