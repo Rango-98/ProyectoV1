@@ -91,11 +91,13 @@ public class VistaProductoActivity extends AppCompatActivity {
                 protected Map<String, String> getParams() {
                     Map<String, String> param = new HashMap<>();
                     param.put("idproducto", String.valueOf(idproducto));
+
                     if(precio_final != 0){
                         param.put("costo", String.valueOf(precio_final));
                     }else{
                         param.put("costo", String.valueOf(precio_venta));
                     }
+
                     param.put("cantidad", String.valueOf(contador));
                     param.put("idusuario", String.valueOf(idusuario));
                     return param;
