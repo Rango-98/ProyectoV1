@@ -26,13 +26,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class VistaProductoActivity extends AppCompatActivity {
-
     private TextView txtTotalItems;
     private TextView tv_contador;
     private double precio_venta = 0.0, precio_final = 0.0;
     private String url = "";
     private int idusuario = 0, idproducto = 0, contador = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
